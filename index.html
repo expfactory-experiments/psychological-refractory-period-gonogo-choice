@@ -54,8 +54,15 @@ $( document ).ready(function() {
                          success: function(){ document.location = "/next" },
                          dataType: "application/json",
                          error: function(err) {
-                             jsPsych.data.localSave('psychological-refractory-period-gonogo-choice_results.csv', 'csv');
+
+                             if (err.status == 200){
+                                document.location = "/next"
+                             } else {
+                                 // If error, assue local save
+                                jsPsych.data.localSave('psychological-refractory-period-gonogo-choice_results.csv', 'csv');
+                            }
                          }
+   
                      });
                  })
              }
